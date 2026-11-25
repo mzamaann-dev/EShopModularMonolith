@@ -1,0 +1,11 @@
+<Project>
+
+  <!-- Inherit the repo-wide settings from the root Directory.Build.props. -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!-- Global usings shared by every module project. -->
+  <ItemGroup>
+    <Using Include="Shared.DDD" />
+  </ItemGroup>
+
+</Project>

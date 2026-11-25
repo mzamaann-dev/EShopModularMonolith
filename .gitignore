@@ -1,0 +1,27 @@
+## .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.DotSettings.user
+launchSettings.json.bak
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## Build / test output
+[Tt]est[Rr]esult*/
+*.log
+*.nupkg
+*.snupkg
+artifacts/
+coverage/
+*.coverage
+
+## Secrets / local config
+.env
+appsettings.*.local.json
+secrets.json
