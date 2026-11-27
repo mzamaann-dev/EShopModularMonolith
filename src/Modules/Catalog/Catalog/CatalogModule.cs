@@ -1,10 +1,12 @@
 using System.Reflection;
 using Catalog.Data;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Behaviours;
 using Shared.Data.Interceptors;
 
 namespace Catalog;
@@ -17,10 +19,12 @@ public static class CatalogModule
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            config.AddOpenBehaviors([typeof(ValidationBehaviour<,>), typeof(LoggingBehaviour<,>)]);
         });
 
-        var connectionString = configuration.GetConnectionString("CatalogDb");
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+        var connectionString = configuration.GetConnectionString("CatalogDb");
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();

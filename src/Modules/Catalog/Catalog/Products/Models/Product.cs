@@ -10,7 +10,7 @@ public class Product : Aggregate<Guid>
     public string ImageFile { get; private set; } = default!;
     public decimal Price { get; private set; }
 
-    public static Product Create(Guid Id, string name, List<string> category, decimal price, string imageFile)
+    public static Product Create(Guid Id, string name, List<string> category, string description, decimal price, string imageFile)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -20,6 +20,7 @@ public class Product : Aggregate<Guid>
             Id = Id,
             Name = name,
             Category = category,
+            Description = description,
             Price = price,
             ImageFile = imageFile
         };
